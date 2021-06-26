@@ -1,39 +1,38 @@
 package com.ejerciciosTarea;
 
 public class añoBisiesto {
+	
+	
+	 static int año = 1610;
+	 
+	 
+	
+
 	public static boolean Bisiesto() {
-		
-		int a = año(0);
+		int a = año;
 		int x = 400;
 		int y = 100;
 		int z = 4;
-
 		if(a%x != 0 && a%y != 0 && a%z != 0){
 			return false;
-		} else{
-			return true;
+			} else{
+				return true;
+				}
 		}
-		}
+	
 	public static boolean Confirmacion() {
-		int a = año(0);
+		int a = año;
 		if(a >=1 && a <= 9999) {
 			return true;
-		}else {
-			return false;
-	}
-
-}
-	
-	public static int año(int a) {
-		
-		return a = 1884;
-}
-	
-	public static void main(String[] args) {
+			}else {
+				return false;
+				}
+		}	
+	public static void main() {
 		
 		boolean z = Confirmacion();
 		boolean b = Bisiesto();
-		int a = año(0);
+		int a = año;
 		
 		if(z == true) {
 			  if(b == true) {
@@ -46,6 +45,12 @@ public class añoBisiesto {
 				System.out.println("Parametro incorrecto.");
 			}
 		}
+	
+	public static void main(String[] args) {
+		
 	}
+
+	
+}
 
 
