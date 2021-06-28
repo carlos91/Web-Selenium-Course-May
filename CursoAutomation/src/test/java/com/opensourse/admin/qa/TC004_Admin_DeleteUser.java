@@ -17,7 +17,7 @@ import org.testng.annotations.AfterClass;
 public class TC004_Admin_DeleteUser {
 	String username = "Admin";
 	String password = "admin123";
-	String employee = "Aaliyah Haq";
+	String employee = "Sara Tencrady";
 	int random = (int) (Math.random() * 10000);
 	String newUser = "Carlos Gutierrez" + random;
 	String mainPwd = "admin123";
@@ -71,6 +71,9 @@ public class TC004_Admin_DeleteUser {
 		// Step 9 Click Save
 		Reporter.log("Click Save");
 		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
+		
+		
+		
 		
 //		// Step 14 Close Browser
 //				Reporter.log("Close Browser");
@@ -128,7 +131,7 @@ public class TC004_Admin_DeleteUser {
 
 		// Step 8 Select User
 		Reporter.log("Select User");
-		driver.findElement(By.xpath("//tbody//td")).click();
+		driver.findElement(By.xpath("//tbody/tr[1]/td[1]")).click();
 
 		// Step 9 Click Delete
 		// btnDelete

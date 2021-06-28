@@ -1,8 +1,7 @@
 package com.opensourse.admin.qa;
 
 import org.testng.annotations.Test;
-
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,23 +12,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 
-public class TC003_Admin_AddNewUser {
-	@BeforeClass
-	public void beforeClass() {
+public class TC005_Admin_CreateUserDisabled {
+	String username = "Admin";
+	String password = "admin123";
+	String employee = "Sara Tencrady";
+	int random = (int) (Math.random() * 10000);
+	String newUser = "Carlos Gutierrez" + random;
+	String mainPwd = "admin123";
+	String Status = "Disabled";
 
+	@BeforeTest
+	public void beforeTest() {
 	}
 
 	@Test
-	public void TC003_Admin_AddNewUser_Scrip() {
-		// Data
-		String username = "Admin";
-		String password = "admin123";
-		String employee = "Sara Tencrady";
-		int random = (int) (Math.random() * 1000);
-		String newUser = "Carlos Gutierrez" + random;
-		String mainPwd = "admin123";
+	public void TC005_Admin_CreateUserDisabled_Scrip() {
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
@@ -57,7 +56,6 @@ public class TC003_Admin_AddNewUser {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='searchSystemUser_userName']")));
 
 		// Step 5 Click add
-		// btnAdd
 		Reporter.log("Click add");
 		driver.findElement(By.xpath("//input[@id='btnAdd']")).click();
 
@@ -68,34 +66,39 @@ public class TC003_Admin_AddNewUser {
 		// Step 7 Enter valid User Name systemUser_userName
 		Reporter.log("Enter valid User Name");
 		driver.findElement(By.xpath("//input[@id='systemUser_userName']")).sendKeys(newUser);
+		
+		// Step 8 Change Status Disabled
+		Reporter.log("Change Status Disabled");
+		driver.findElement(By.xpath("//select[@id='systemUser_status']")).click();
+		driver.findElement(By.xpath("//option[@value='0']")).click();
 
-		// Step 8 Enter a new Password systemUser_password systemUser_confirmPassword
+		// Step 9 Enter a new Password systemUser_password systemUser_confirmPassword
 		Reporter.log("Enter a new Password");
 		driver.findElement(By.xpath("//input[@id='systemUser_password']")).sendKeys(mainPwd);
 		driver.findElement(By.xpath("//input[@id='systemUser_confirmPassword']")).sendKeys(mainPwd);
 
-		// Step 9 Click Save
+		// Step 10 Click Save
+		Reporter.log("Click Save");
 		Reporter.log("Click Save");
 		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
+		
 
-		// Step 10 Search username in field "Username"
+		// Step 11 Search username in field "Username"
 		Reporter.log("Search username in field \"Username\"");
 		driver.findElement(By.xpath("//input[@id='searchSystemUser_userName']")).sendKeys(newUser);
-
-		// Step 11 Click Search
+		
+		// Step 12 Click Search
 		Reporter.log("Click Search");
 		driver.findElement(By.xpath("//input[@id='searchBtn']")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-		// Step 12 Verify username exist in table
-		Reporter.log("Verify username exist in table");
-		String getusername = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
-		Assert.assertEquals(getusername, newUser);
-//		  SoftAssert softAssert = new SoftAssert();
-//	  softAssert.assertEquals(username, "Admon");
-
+		// Step 13 Verify username is Disabled Status in table
+		Reporter.log("Verify username is Disabled Status in table");
+		String getStatus = driver.findElement(By.xpath("//tbody/tr[1]/td[5]")).getText();
+		Assert.assertEquals(getStatus, Status);
+		
+		
 		// Step 13 Log out
-
 		Reporter.log("Log out");
 		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
 		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
@@ -105,12 +108,12 @@ public class TC003_Admin_AddNewUser {
 		Reporter.log("Close Browser");
 		driver.close();
 
-		// softAssert.assertAll();
+		
 
 	}
 
-	@AfterClass
-	public void afterClass() {
+	@AfterTest
+	public void afterTest() {
 	}
 
 }
