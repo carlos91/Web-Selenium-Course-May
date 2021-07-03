@@ -1,8 +1,5 @@
 package com.opensourse.admin.qa;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -13,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class TC004_Admin_DeleteUser {
 	String username = "Admin";
@@ -22,8 +21,8 @@ public class TC004_Admin_DeleteUser {
 	String newUser = "Carlos Gutierrez" + random;
 	String mainPwd = "admin123";
 
-	@BeforeClass
-	public void beforeClass() {
+	@BeforeTest
+	public void beforeTest() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
@@ -71,13 +70,13 @@ public class TC004_Admin_DeleteUser {
 		// Step 9 Click Save
 		Reporter.log("Click Save");
 		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
+		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+		Thread.sleep(1000);
 		
 		
-		
-		
-//		// Step 14 Close Browser
-//				Reporter.log("Close Browser");
-//				driver.close();
+
+			Reporter.log("Close Browser");
+			driver.close();
 		
 
 		

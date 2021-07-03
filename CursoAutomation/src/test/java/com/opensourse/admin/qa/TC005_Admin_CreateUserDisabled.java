@@ -1,18 +1,19 @@
 package com.opensourse.admin.qa;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeTest;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
+//import org.testng.asserts.SoftAssert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 public class TC005_Admin_CreateUserDisabled {
 	String username = "Admin";
@@ -28,7 +29,7 @@ public class TC005_Admin_CreateUserDisabled {
 	}
 
 	@Test
-	public void TC005_Admin_CreateUserDisabled_Scrip() {
+	public void TC005_Admin_CreateUserDisabled_Scrip() throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
@@ -66,11 +67,13 @@ public class TC005_Admin_CreateUserDisabled {
 		// Step 7 Enter valid User Name systemUser_userName
 		Reporter.log("Enter valid User Name");
 		driver.findElement(By.xpath("//input[@id='systemUser_userName']")).sendKeys(newUser);
-		
+
 		// Step 8 Change Status Disabled
 		Reporter.log("Change Status Disabled");
-		driver.findElement(By.xpath("//select[@id='systemUser_status']")).click();
-		driver.findElement(By.xpath("//option[@value='0']")).click();
+		Select drpStatus = new Select (driver.findElement(By.id("systemUser_status")));
+        drpStatus.selectByVisibleText("Disabled");
+//		driver.findElement(By.xpath("//select[@id='systemUser_status']")).click();
+//		driver.findElement(By.xpath("//option[@value='0']")).click();
 
 		// Step 9 Enter a new Password systemUser_password systemUser_confirmPassword
 		Reporter.log("Enter a new Password");
@@ -81,12 +84,11 @@ public class TC005_Admin_CreateUserDisabled {
 		Reporter.log("Click Save");
 		Reporter.log("Click Save");
 		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
-		
 
 		// Step 11 Search username in field "Username"
 		Reporter.log("Search username in field \"Username\"");
 		driver.findElement(By.xpath("//input[@id='searchSystemUser_userName']")).sendKeys(newUser);
-		
+
 		// Step 12 Click Search
 		Reporter.log("Click Search");
 		driver.findElement(By.xpath("//input[@id='searchBtn']")).click();
@@ -96,19 +98,24 @@ public class TC005_Admin_CreateUserDisabled {
 		Reporter.log("Verify username is Disabled Status in table");
 		String getStatus = driver.findElement(By.xpath("//tbody/tr[1]/td[5]")).getText();
 		Assert.assertEquals(getStatus, Status);
-		
-		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		SoftAssert softAssert = new SoftAssert();
+//		softAssert.assertEquals(getStatus, Status);
+
 		// Step 13 Log out
 		Reporter.log("Log out");
-		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
-		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
+//		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@id=\"welcome\"]")));
+//		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[contains(text(),\"Logout\")]")));
 
 		// Step 14 Close Browser
 		Reporter.log("Close Browser");
 		driver.close();
 
-		
+//		softAssert.assertAll();
 
 	}
 

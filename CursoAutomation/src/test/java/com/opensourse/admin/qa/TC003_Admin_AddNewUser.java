@@ -1,7 +1,7 @@
 package com.opensourse.admin.qa;
 
 import org.testng.annotations.Test;
-
+//import org.testng.asserts.SoftAssert;
 import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +16,8 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 
 public class TC003_Admin_AddNewUser {
+	int random = (int) (Math.random() * 1000);
+	String newUser = "Carlos Gutierrez" + random;
 	@BeforeClass
 	public void beforeClass() {
 
@@ -27,8 +29,6 @@ public class TC003_Admin_AddNewUser {
 		String username = "Admin";
 		String password = "admin123";
 		String employee = "Sara Tencrady";
-		int random = (int) (Math.random() * 1000);
-		String newUser = "Carlos Gutierrez" + random;
 		String mainPwd = "admin123";
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -89,10 +89,11 @@ public class TC003_Admin_AddNewUser {
 
 		// Step 12 Verify username exist in table
 		Reporter.log("Verify username exist in table");
-		String getusername = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
-		Assert.assertEquals(getusername, newUser);
-//		  SoftAssert softAssert = new SoftAssert();
-//	  softAssert.assertEquals(username, "Admon");
+		 String getusername = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
+		 Assert.assertEquals(getusername, newUser);
+		driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
+//		SoftAssert softAssert = new SoftAssert();
+//		softAssert.assertEquals(username, newUser);
 
 		// Step 13 Log out
 
@@ -105,7 +106,7 @@ public class TC003_Admin_AddNewUser {
 		Reporter.log("Close Browser");
 		driver.close();
 
-		// softAssert.assertAll();
+//		softAssert.assertAll();
 
 	}
 

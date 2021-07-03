@@ -28,7 +28,7 @@ public class TC001_Admin_SearchEmployee {
 	  
 	  //Step - 1 Open Browser "OrangeHRM" web page
 	  Reporter.log("Open Browser \"OrangeHRM\" web page ");
-	  driver.get("https://opensource-demo.orangehrmlive.com/index.php/auth/login");
+	  driver.get("https://opensource-demo.orangehrmlive.com");
 	  driver.manage().window().maximize();
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  
