@@ -45,11 +45,13 @@ public class LoginPage extends SeleniumWrapper {
 	 * Logout orange
 	 * 
 	 * @author carlos gutierrez
+	 * @throws InterruptedException 
 	 */
-	public void logoutOrange() {
+	public void logoutOrange() throws InterruptedException {
 		reportLog("Logout OrangeHRM web page");
 		click(btnWelcome);
 		click(btnLogout);
+		Thread.sleep(1000);
 		implicitWait(5);
 
 	}

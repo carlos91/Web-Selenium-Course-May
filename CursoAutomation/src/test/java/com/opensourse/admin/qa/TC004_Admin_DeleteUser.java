@@ -72,21 +72,14 @@ public class TC004_Admin_DeleteUser {
 		driver.findElement(By.xpath("//input[@id='btnSave']")).click();
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
 		Thread.sleep(1000);
-		
-		
 
-			Reporter.log("Close Browser");
-			driver.close();
-		
-
-		
+		Reporter.log("Close Browser");
+		driver.close();
 
 	}
 
 	@Test
 	public void TC004_Admin_DeleteUser_Scrip() {
-		
-		
 
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -140,7 +133,7 @@ public class TC004_Admin_DeleteUser {
 		// Step 10 Validate pop-window is displayed: "Delete Records?"
 		Reporter.log("Validate pop-window is displayed: \"Delete Records?\"");
 		WebDriverWait wait1 = new WebDriverWait(driver, 5);
-		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='dialogDeleteBtn']")));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text() = 'Delete records?']")));
 
 		// Step 11 Click Ok to confirm delete user
 		Reporter.log("Click Ok to confirm delete user");

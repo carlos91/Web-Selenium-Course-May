@@ -1,9 +1,5 @@
 package com.opensourse.admin.qa;
 
-import org.testng.annotations.Test;
-//import org.testng.asserts.SoftAssert;
-import org.testng.annotations.BeforeClass;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -14,22 +10,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
+//import org.testng.asserts.SoftAssert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class TC003_Admin_AddNewUser {
+	String username = "Admin";
+	String password = "admin123";
+	String employee = "Sara Tencrady";
+	String mainPwd = "admin123";
 	int random = (int) (Math.random() * 1000);
 	String newUser = "Carlos Gutierrez" + random;
+	
 	@BeforeClass
 	public void beforeClass() {
 
 	}
 
 	@Test
-	public void TC003_Admin_AddNewUser_Scrip() {
+	public void TC003_Admin_AddNewUser_Scrip() throws InterruptedException {
 		// Data
-		String username = "Admin";
-		String password = "admin123";
-		String employee = "Sara Tencrady";
-		String mainPwd = "admin123";
+		
 		System.setProperty("webdriver.chrome.driver", "./src/test/resources/drivers/chrome/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 
@@ -67,7 +68,7 @@ public class TC003_Admin_AddNewUser {
 
 		// Step 7 Enter valid User Name systemUser_userName
 		Reporter.log("Enter valid User Name");
-		driver.findElement(By.xpath("//input[@id='systemUser_userName']")).sendKeys(newUser);
+		driver.findElement(By.xpath("//input[@id='systemUser_userName']")).sendKeys(getNewUser());
 
 		// Step 8 Enter a new Password systemUser_password systemUser_confirmPassword
 		Reporter.log("Enter a new Password");
@@ -101,6 +102,8 @@ public class TC003_Admin_AddNewUser {
 		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
 		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(1000);
+		
 
 		// Step 14 Close Browser
 		Reporter.log("Close Browser");
@@ -109,9 +112,13 @@ public class TC003_Admin_AddNewUser {
 //		softAssert.assertAll();
 
 	}
+	
 
 	@AfterClass
 	public void afterClass() {
+	}
+	public String getNewUser() {
+		return this.newUser;
 	}
 
 }

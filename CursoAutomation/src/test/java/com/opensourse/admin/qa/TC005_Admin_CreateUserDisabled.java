@@ -105,9 +105,9 @@ public class TC005_Admin_CreateUserDisabled {
 		// Step 13 Log out
 		Reporter.log("Log out");
 		Thread.sleep(1000);
-//		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
+		driver.findElement(By.xpath("//a[@id=\"welcome\"]")).click();
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@id=\"welcome\"]")));
-//		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),\"Logout\")]")).click();
 //		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[contains(text(),\"Logout\")]")));
 

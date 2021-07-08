@@ -3,7 +3,7 @@ package com.ejerciciosTarea;
 public class añoBisiesto {
 	
 	
-	 static int año = 1610;
+	 static int año = -2000;
 	 
 	 
 	
@@ -28,8 +28,9 @@ public class añoBisiesto {
 				return false;
 				}
 		}	
-	public static void main() {
-		
+
+	
+	public static void main(String[] args) {
 		boolean z = Confirmacion();
 		boolean b = Bisiesto();
 		int a = año;
@@ -44,10 +45,6 @@ public class añoBisiesto {
 			}else {
 				System.out.println("Parametro incorrecto.");
 			}
-		}
-	
-	public static void main(String[] args) {
-		
 	}
 
 	

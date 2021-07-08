@@ -1,4 +1,4 @@
-package com.opensourse.admin.qa;
+package com.opensourse.admin.qa.POM;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
@@ -27,15 +27,15 @@ public class TC001_Admin_SearchEmployee_POM {
 	  
 	  //Setup data
 	  //JSON file
-//	  this.username = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "username");
-//	  this.password = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "password");
+	  this.username = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "username");
+	  this.password = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "password");
 	  //Excel
-	  this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
-	  this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
+//	  this.username = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 0);
+//	  this.password = seleniumWrapper.getCellData(this.getClass().getSimpleName(), 1, 1);
   }
   
   @Test
-  public void TC001_Admin_SEarchEmployee_POM_Script() {
+  public void TC001_Admin_SEarchEmployee_POM_Script() throws InterruptedException {
 	  // Step 1
 	  login.setup(GlobalVariables.QA_URL);
 	  

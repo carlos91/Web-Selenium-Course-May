@@ -24,6 +24,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.asserts.SoftAssert;
 
 /**
  * Selenium wrapper class Base Class
@@ -121,6 +122,7 @@ public class SeleniumWrapper {
 	 */
 	public void click(By locator) {
 		driver.findElement(locator).click();
+		implicitWait(5);
 	}
 
 	/**
@@ -163,6 +165,27 @@ public class SeleniumWrapper {
 					+ ">");
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Soft Assertion
+	 * 
+	 * @author carlos gutierrez
+	 */
+	public void SoftAssert(String actualValue, String expectedValue) {
+		try {
+			SoftAssert assertion = new SoftAssert();
+			assertion.assertEquals(actualValue, expectedValue);
+//			assertion.fail("Not able to assert actual value <" + actualValue + "> with expected value <" + expectedValue
+//					+ ">");
+			assertion.assertAll();
+		} catch (AssertionError e) {
+			SoftAssert assertion = new SoftAssert();
+			assertion.fail("Not able to assert actual value <" + actualValue + "> with expected value <" + expectedValue
+					+ ">");
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -257,5 +280,12 @@ public class SeleniumWrapper {
 			return null;
 		}
 	}
+	
+	public String editJSONValue(String jsonFileObj, String jsonKey) {
+		return null;
+		
+	}
+
+
 
 }
