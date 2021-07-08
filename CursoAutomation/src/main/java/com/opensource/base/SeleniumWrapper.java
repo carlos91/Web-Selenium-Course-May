@@ -121,9 +121,26 @@ public class SeleniumWrapper {
 	 * @author carlos gutierrez
 	 */
 	public void click(By locator) {
+		waitForElementClickable(locator);
 		driver.findElement(locator).click();
-		implicitWait(5);
+		
 	}
+	
+	/**
+	 * Wait for element present
+	 * 
+	 * @author carlos gutierrez
+	 */
+	public void waitForElementClickable(By locator) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.elementToBeClickable(locator));
+
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	/**
 	 * Wait for element present
@@ -176,13 +193,10 @@ public class SeleniumWrapper {
 		try {
 			SoftAssert assertion = new SoftAssert();
 			assertion.assertEquals(actualValue, expectedValue);
-//			assertion.fail("Not able to assert actual value <" + actualValue + "> with expected value <" + expectedValue
-//					+ ">");
-			assertion.assertAll();
+
+//			assertion.assertAll();
 		} catch (AssertionError e) {
-			SoftAssert assertion = new SoftAssert();
-			assertion.fail("Not able to assert actual value <" + actualValue + "> with expected value <" + expectedValue
-					+ ">");
+			Assert.fail("SoftAssert: ");
 			e.printStackTrace();
 		}
 
@@ -283,6 +297,20 @@ public class SeleniumWrapper {
 	
 	public String editJSONValue(String jsonFileObj, String jsonKey) {
 		return null;
+		
+	}
+	
+	/**
+	 * Obtener valor tabla 
+	 * @author carlos gutierrez
+	 */
+	
+	public String getValueFromTable(String row, String colum) {
+		try {
+			return driver.findElement(By.xpath("//tbody/tr["+row+"]/td["+colum+"]")).getText();
+		} catch(NoSuchElementException e) {
+			return null;
+		}
 		
 	}
 

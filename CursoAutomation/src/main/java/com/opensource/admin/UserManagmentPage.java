@@ -119,6 +119,12 @@ public class UserManagmentPage extends SeleniumWrapper {
 		String actualStatus = getText(tblStatus);
 		SoftAssert(actualStatus, status);
 	}
+	
+	public void createUser(String user) {
+		
+		
+		
+	}
 
 	
 	
