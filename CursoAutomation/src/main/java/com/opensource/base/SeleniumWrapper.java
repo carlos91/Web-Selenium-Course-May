@@ -216,7 +216,7 @@ public class SeleniumWrapper {
 //			assertion.assertAll();
 		} catch (AssertionError e) {
 			Assert.fail("SoftAssert: ");
-			takeScreenshot("Not able to click element <" + expectedValue + ">");
+//			takeScreenshot("Not able to click element <" + expectedValue + ">");
 			e.printStackTrace();
 		}
 
