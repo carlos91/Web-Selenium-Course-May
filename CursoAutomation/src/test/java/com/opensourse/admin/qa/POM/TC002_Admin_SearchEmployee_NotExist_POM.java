@@ -34,7 +34,7 @@ public class TC002_Admin_SearchEmployee_NotExist_POM {
 	  this.message = seleniumWrapper.getJSONValue(this.getClass().getSimpleName(), "message");
   }
   @Test
-  public void TC002_Admin_SearchEmployee_NotExist_POM_Script() throws InterruptedException {
+  public void TC002_Admin_SearchEmployee_NotExist_POM_Script() {
 	// Step 1
 		  login.setup(GlobalVariables.QA_URL);
 		  

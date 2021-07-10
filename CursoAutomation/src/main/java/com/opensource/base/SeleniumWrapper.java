@@ -1,10 +1,13 @@
 package com.opensource.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,6 +28,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
 
 /**
  * Selenium wrapper class Base Class
@@ -112,7 +118,13 @@ public class SeleniumWrapper {
 	 * Type text
 	 */
 	public void type(String inputText, By locator) {
-		driver.findElement(locator).sendKeys(inputText);
+		try {
+			driver.findElement(locator).sendKeys(inputText);
+		} catch (NoSuchElementException e) {
+			takeScreenshot("Not able to click element <" + locator + ">");
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -121,11 +133,17 @@ public class SeleniumWrapper {
 	 * @author carlos gutierrez
 	 */
 	public void click(By locator) {
-		waitForElementClickable(locator);
-		driver.findElement(locator).click();
-		
+		try {
+
+			waitForElementClickable(locator);
+			driver.findElement(locator).click();
+		} catch (NoSuchElementException e) {
+			takeScreenshot("Not able to click element <" + locator + ">");
+			e.printStackTrace();
+		}
+
 	}
-	
+
 	/**
 	 * Wait for element present
 	 * 
@@ -140,7 +158,6 @@ public class SeleniumWrapper {
 			e.printStackTrace();
 		}
 	}
-	
 
 	/**
 	 * Wait for element present
@@ -153,6 +170,7 @@ public class SeleniumWrapper {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
 		} catch (TimeoutException e) {
+			takeScreenshot("Not able to click element <" + locator + ">");
 			e.printStackTrace();
 		}
 	}
@@ -166,6 +184,7 @@ public class SeleniumWrapper {
 		try {
 			return driver.findElement(locator).getText();
 		} catch (NoSuchElementException e) {
+			takeScreenshot("Not able to click element <" + locator + ">");
 			return null;
 		}
 
@@ -197,6 +216,7 @@ public class SeleniumWrapper {
 //			assertion.assertAll();
 		} catch (AssertionError e) {
 			Assert.fail("SoftAssert: ");
+			takeScreenshot("Not able to click element <" + expectedValue + ">");
 			e.printStackTrace();
 		}
 
@@ -294,26 +314,50 @@ public class SeleniumWrapper {
 			return null;
 		}
 	}
-	
+
 	public String editJSONValue(String jsonFileObj, String jsonKey) {
 		return null;
-		
+
 	}
-	
+
 	/**
-	 * Obtener valor tabla 
+	 * Obtener valor tabla
+	 * 
 	 * @author carlos gutierrez
 	 */
-	
+
 	public String getValueFromTable(String row, String colum) {
 		try {
-			return driver.findElement(By.xpath("//tbody/tr["+row+"]/td["+colum+"]")).getText();
-		} catch(NoSuchElementException e) {
+			return driver.findElement(By.xpath("//tbody/tr[" + row + "]/td[" + colum + "]")).getText();
+		} catch (NoSuchElementException e) {
 			return null;
 		}
-		
+
 	}
 
+	/*
+	 * Take screenshot
+	 *
+	 * @author Ricardo Avalos
+	 * 
+	 * @throws IOException
+	 */
+	public String takeScreenshot(String fileName) {
+		try {
+			String pathFileName = GlobalVariables.PATH_SCREENSHOTS + fileName + ".png";
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "PNG", new File(pathFileName));
+			return pathFileName;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 
+	}
+
+	public int getRandomNumber() {
+		int random = (int) (Math.random() * 100);
+		return random;
+	}
 
 }

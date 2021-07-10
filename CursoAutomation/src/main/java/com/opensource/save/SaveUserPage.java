@@ -41,6 +41,7 @@ public class SaveUserPage extends SeleniumWrapper {
 	public void enterEmployee(String employee) {
 		reportLog("Enter valid Employee Name");
 		type(employee, txtEmployee);
+//		takeScreenshot("enterEmployee");
 	}
 
 	public void enterNewUser(String newUser) {

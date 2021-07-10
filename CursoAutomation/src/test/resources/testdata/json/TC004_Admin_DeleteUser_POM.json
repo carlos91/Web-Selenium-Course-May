@@ -2,7 +2,7 @@
   "TC004_Admin_DeleteUser_POM": {
 	  "username":"Admin",
 	  "password":"admin123",
-	  "employee":"Sara Tencrady",
+	  "employee":"Aaliyah Haq",
 	  "newUser":"Carlos Gutierrez 00401",
 	  "popUp":"Delete records?",
 	  "message" : "No Records Found"

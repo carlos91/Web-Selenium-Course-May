@@ -31,6 +31,7 @@ public class UserManagmentPage extends SeleniumWrapper {
 	public void validateLoginSuccessfully() {
 		reportLog("Validate that you have logged in successfully");
 		waitForElementPresent(linkUM);
+//		takeScreenshot("validateLoginSuccessfully");
 	}
 
 	/*
@@ -41,6 +42,7 @@ public class UserManagmentPage extends SeleniumWrapper {
 		reportLog("Click Admin - Go to the admin page");
 		click(linkUM);
 		waitForElementPresent(txtUsername);
+//		takeScreenshot("clickAdmin");
 	}
 
 	/**
@@ -54,6 +56,7 @@ public class UserManagmentPage extends SeleniumWrapper {
 		if (clickSearch) {
 			click(btnSearch);
 		}
+//		takeScreenshot("searchUser");
 	}
 
 	/**
@@ -65,6 +68,7 @@ public class UserManagmentPage extends SeleniumWrapper {
 		reportLog("Verify username exist in table");
 		String actualUser = getText(tblUsername);
 		SoftAssert(actualUser, expectedUser);
+//		takeScreenshot("validateUserTable");
 	}
 
 	/**

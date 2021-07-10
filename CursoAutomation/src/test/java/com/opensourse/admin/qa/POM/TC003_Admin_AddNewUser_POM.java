@@ -37,7 +37,7 @@ public class TC003_Admin_AddNewUser_POM {
 	  
   }
   @Test
-  public void TC003_Admin_AddNewUser_POM_Script() throws InterruptedException {
+  public void TC003_Admin_AddNewUser_POM_Script() {
 	// Step 1
 	  login.setup(GlobalVariables.QA_URL);
 	  

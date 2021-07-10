@@ -9,7 +9,6 @@ public class LoginPage extends SeleniumWrapper {
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 	// Objetos
@@ -28,6 +27,7 @@ public class LoginPage extends SeleniumWrapper {
 	 */
 	public void setup(String url) {
 		launchBrowser(url);
+//		takeScreenshot("setup");
 	}
 
 	/*
@@ -39,6 +39,7 @@ public class LoginPage extends SeleniumWrapper {
 		type(password, txtPassword);
 		click(btnLogin);
 		implicitWait(5);
+//		takeScreenshot("loginOrange");
 	}
 
 	/**
@@ -47,12 +48,14 @@ public class LoginPage extends SeleniumWrapper {
 	 * @author carlos gutierrez
 	 * @throws InterruptedException 
 	 */
-	public void logoutOrange() throws InterruptedException {
+	public void logoutOrange()  {
 		reportLog("Logout OrangeHRM web page");
 		click(btnWelcome);
+		waitForElementClickable(btnLogout);
 		click(btnLogout);
-		Thread.sleep(1000);
+		waitForElementClickable(btnLogout);
 		implicitWait(5);
+//		takeScreenshot("logoutOrange");
 
 	}
 

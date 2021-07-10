@@ -35,7 +35,7 @@ public class TC001_Admin_SearchEmployee_POM {
   }
   
   @Test
-  public void TC001_Admin_SEarchEmployee_POM_Script() throws InterruptedException {
+  public void TC001_Admin_SEarchEmployee_POM_Script() {
 	  // Step 1
 	  login.setup(GlobalVariables.QA_URL);
 	  

@@ -36,7 +36,7 @@ public class TC005_Admin_CreateUserDisabled_POM {
 	}
 
 	@Test
-	public void TC005_Admin_CreateUserDisabled_POM_Script() throws InterruptedException {
+	public void TC005_Admin_CreateUserDisabled_POM_Script() {
 		// Step 1
 		login.setup(GlobalVariables.QA_URL);
 

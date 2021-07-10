@@ -73,7 +73,7 @@ public class TC004_Admin_DeleteUser_POM {
 	}
 
 	@Test
-	public void TC004_Admin_DeleteUser_POM_Script() throws InterruptedException {
+	public void TC004_Admin_DeleteUser_POM_Script() {
 		// Step 1
 		login.setup(GlobalVariables.QA_URL);
 

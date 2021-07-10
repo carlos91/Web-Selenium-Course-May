@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.opensourse.admin.qa.POM.TC005_Admin_CreateUserDisabled_POM">
+      <class name="com.opensourse.admin.qa.POM.TC003_Admin_AddNewUser_POM">
         <methods>
-          <include name="afterTest"/>
-          <include name="TC005_Admin_CreateUserDisabled_POM_Script"/>
           <include name="beforeTest"/>
+          <include name="TC003_Admin_AddNewUser_POM_Script"/>
+          <include name="afterTest"/>
         </methods>
-      </class> <!-- com.opensourse.admin.qa.POM.TC005_Admin_CreateUserDisabled_POM -->
+      </class> <!-- com.opensourse.admin.qa.POM.TC003_Admin_AddNewUser_POM -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
