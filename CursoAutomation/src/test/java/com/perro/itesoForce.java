@@ -11,6 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 
 public class itesoForce {
+	
+	String user = "beneranda@gmail.com";
+	String password = "Pa5kis94";
  
   @BeforeTest
   public void beforeTest() {
@@ -24,8 +27,8 @@ public class itesoForce {
 	  driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	  
 	  //Login
-	  driver.findElement(By.xpath("//input[@id='60:2;a']")).sendKeys("beneranda@gmail.com");
-	  driver.findElement(By.xpath("//input[@id='70:2;a']")).sendKeys("Pa5kis94");
+	  driver.findElement(By.xpath("//input[@id='60:2;a']")).sendKeys(user);
+	  driver.findElement(By.xpath("//input[@id='70:2;a']")).sendKeys(password);
 	  driver.findElement(By.xpath("//span[@dir='ltr']")).click();
 	  
 	  //Log out
